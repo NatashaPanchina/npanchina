@@ -1,5 +1,5 @@
 /**
-  * //TODO add comments.
+  * package for calculator task
   *
   *@author Natasha Panchina(panchinanata25@gmail.com)
   *@version $Id$
