@@ -1,5 +1,5 @@
 /**
-  *package for calculator task
+  *package for calculate task
   *
   *@author Natasha Panchina(panchinanata25@gmail.com)
   *@version $Id$
