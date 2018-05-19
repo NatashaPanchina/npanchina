@@ -32,7 +32,7 @@ public class TriangleTest {
     @Test
     public void whenAreaSetOnePointThenTriangleArea() {
         Point a = new Point(0, 0);
-        Point b = new Point(0 ,0);
+        Point b = new Point(0, 0);
         Point c = new Point(2, 0);
 
         Triangle triangle = new Triangle(a, b, c);
