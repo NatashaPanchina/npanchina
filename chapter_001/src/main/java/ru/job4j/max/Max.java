@@ -17,4 +17,17 @@ public class Max {
     public int max(int first, int second) {
         return  first > second ? first : second;
     }
+
+    /**
+     * Method max
+     * @param first number
+     * @param second number
+     * @param third number
+     * @return maximum
+     */
+    public int max(int first, int second, int third) {
+        int temp = this.max(first, second);
+        temp = this.max(temp, third);
+        return temp;
+    }
 }
