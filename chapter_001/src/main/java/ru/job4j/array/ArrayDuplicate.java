@@ -16,17 +16,16 @@ public class ArrayDuplicate {
      * @return array without duplicates.
      */
     public String[] remove(String[] array) {
-        int counter = 0;
-        for (int out = 0; out < array.length - 1; out++) {
-            for (int in = out + 1; in < array.length; in++) {
+        int size = array.length;
+        for (int out = 0; out < size; out++) {
+            for (int in = out + 1; in < size; in++) {
                 if (array[out].equals(array[in])) {
-                    array[out] = "";
-                    counter++;
-                    break;
+                    array[in] = array[size - 1];
+                    size--;
+                    in--;
                 }
             }
         }
-        Arrays.sort(array);
-        return Arrays.copyOfRange(array, counter, array.length);
+        return Arrays.copyOf(array, size);
     }
 }
