@@ -10,8 +10,8 @@ package ru.job4j.loop;
 public class Board {
     /**
      * Method paint.
-     * @param width
-     * @param height
+     * @param width of board
+     * @param height of board
      * @return paint board
      */
     public String paint(int width, int height) {
