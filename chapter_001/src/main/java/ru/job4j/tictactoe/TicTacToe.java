@@ -33,6 +33,7 @@ public class TicTacToe extends Application {
         rect.setStroke(Color.BLACK);
         return rect;
     }
+
     private Group buildMarkO(double x, double y, int size) {
         Group group = new Group();
         int radius = size / 2;
@@ -54,10 +55,11 @@ public class TicTacToe extends Application {
     private boolean checkState() {
         boolean gap = this.logic.hasGap();
         if (!gap) {
-            this.showAlert("Все поля заполнены! Начните новую Игру!");
+            this.showAlert("Все поля запонены! Начните новую Игру!");
         }
         return gap;
     }
+
     private void checkWinner() {
         if (this.logic.isWinnerX()) {
             this.showAlert("Победили Крестики! Начните новую Игру!");
@@ -80,6 +82,7 @@ public class TicTacToe extends Application {
         );
         return group;
     }
+
     private EventHandler<MouseEvent> buildMouseEvent(Group panel) {
         return event -> {
             Figure3T rect = (Figure3T) event.getTarget();
@@ -95,6 +98,7 @@ public class TicTacToe extends Application {
                             this.buildMarkO(rect.getX(), rect.getY(), 50)
                     );
                 }
+                this.checkWinner();
                 this.checkState();
             }
         };
@@ -134,5 +138,4 @@ public class TicTacToe extends Application {
         stage.show();
     }
 }
-
 
