@@ -10,33 +10,33 @@ package ru.job4j.array;
 public class Merge {
     /**
      * Method arraysMerge.
-     * @param array - first sorted array
-     * @param array2 - second sorted array
+     * @param first - first sorted array
+     * @param second - second sorted array
      * @return sorted arrays merge.
      */
-    public int[] arraysMerge(int[] array, int[] array2) {
+    public int[] arraysMerge(int[] first, int[] second) {
         int j = 0, i = 0, index = 0;
-        int[] arrayresult = new int[array.length + array2.length];
-        while (j < array.length && i < array2.length) {
-            if (array[j] < array2[i]) {
-                arrayresult[index] = array[j];
+        int[] result = new int[first.length + second.length];
+        while (j < first.length && i < second.length) {
+            if (first[j] < second[i]) {
+                result[index] = first[j];
                 j++;
             } else {
-                arrayresult[index] = array2[i];
+                result[index] = second[i];
                 i++;
             }
             index++;
         }
-        while (j < array.length) {
-            arrayresult[index] = array[j];
+        while (j < first.length) {
+            result[index] = first[j];
             j++;
             index++;
         }
-        while (i < array2.length) {
-            arrayresult[index] = array2[i];
+        while (i < second.length) {
+            result[index] = second[i];
             i++;
             index++;
         }
-        return arrayresult;
+        return result;
     }
 }
