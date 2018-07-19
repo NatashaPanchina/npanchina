@@ -14,6 +14,11 @@ public class Item {
     private long created;
     private String[] comments;
 
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public Item(String name, String description, long created) {
         this.name = name;
         this.description = description;
@@ -42,5 +47,9 @@ public class Item {
 
     public long getCreated() {
         return this.created;
+    }
+
+    public String toString() {
+        return this.name + ", описание: " + this.description + " ID: " + this.id;
     }
 }
