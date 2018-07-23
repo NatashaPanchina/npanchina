@@ -113,6 +113,7 @@ public class StartUI {
     }
 
     private void showMenu() {
+        System.out.println();
         System.out.println("Меню:");
         System.out.println("0. Добавить новую заявку.");
         System.out.println("1. Отобразить список всех заявок.");
