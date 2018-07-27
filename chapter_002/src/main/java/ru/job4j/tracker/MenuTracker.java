@@ -3,6 +3,43 @@ package ru.job4j.tracker;
 import java.util.*;
 
 /**
+ * Add Item - внешний класс.
+ *
+ * @author Natasha Panchina (panchinanata25@gmail.com)
+ * @version $Id$
+ * @since 0.1
+ */
+class AddItem implements UserAction {
+    private int key;
+    private String info;
+
+    AddItem(int key, String info) {
+        this.key = key;
+        this.info = info;
+    }
+
+    @Override
+    public int key() {
+        return this.key;
+    }
+
+    @Override
+    public void execute(Input input, Tracker tracker) {
+        System.out.println("------------ Добавление новой заявки ------------");
+        String name = input.ask("Введите имя заявки: ");
+        String desc = input.ask("Введите описание заявки: ");
+        Item item = new Item(name, desc);
+        tracker.add(item);
+        System.out.println("Новая заявка: " + item.toString());
+    }
+
+    @Override
+    public String info() {
+        return this.key + ". " + this.info;
+    }
+}
+
+/**
  * Menu Tracker.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
@@ -30,13 +67,13 @@ public class MenuTracker {
      * Метод заполняет массив.
      */
     public void fillActions() {
-        this.actions.add(new AddItem(0, "Добавление заявки"));
-        this.actions.add(new ShowItems(1, "Показать все заявки"));
-        this.actions.add(new MenuTracker.EditItem(2, "Редактировать заявку"));
-        this.actions.add(new MenuTracker.DeleteItem(3, "Удаление заявки"));
-        this.actions.add(new FindItemById(4, "Поиск заявки по ID"));
-        this.actions.add(new FindItemsByName(5, "Поиск заявок по имени"));
-        this.actions.add(new ExitProgram(6, "Выход из программы"));
+        this.actions.add(new AddItem(0, "Добавить новую заявку."));
+        this.actions.add(new ShowItems(1, "Отобразить список всех заявок."));
+        this.actions.add(new MenuTracker.EditItem(2, "Редактировать заявку."));
+        this.actions.add(new MenuTracker.DeleteItem(3, "Удалить заявку."));
+        this.actions.add(new FindItemById(4, "Найти заявку по ID."));
+        this.actions.add(new FindItemsByName(5, "Найти заявки совпадающие по имени."));
+        this.actions.add(new ExitProgram(6, "Выйти из программы."));
     }
 
     /**
@@ -56,36 +93,6 @@ public class MenuTracker {
             if (action != null) {
                 System.out.println(action.info());
             }
-        }
-    }
-
-    class AddItem implements UserAction {
-        private int key;
-        private String info;
-
-        AddItem(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
-        }
-
-        @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Добавление новой заявки ------------");
-            String name = input.ask("Введите имя заявки: ");
-            String desc = input.ask("Введите описание заявки: ");
-            Item item = new Item(name, desc);
-            tracker.add(item);
-            System.out.println("Новая заявка: " + item.toString());
-        }
-
-        @Override
-        public String info() {
-            return this.key + " " + this.info;
         }
     }
 
@@ -113,7 +120,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return this.key + " " + this.info;
+            return this.key + ". " + this.info;
         }
     }
 
@@ -147,7 +154,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return this.key + " " + this.info;
+            return this.key + ". " + this.info;
         }
     }
 
@@ -178,7 +185,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return this.key + " " + this.info;
+            return this.key + ". " + this.info;
         }
     }
 
@@ -210,7 +217,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return this.key + " " + this.info;
+            return this.key + ". " + this.info;
         }
     }
 
@@ -245,7 +252,7 @@ public class MenuTracker {
 
         @Override
         public String info() {
-            return this.key + " " + this.info;
+            return this.key + ". " + this.info;
         }
     }
 
@@ -266,11 +273,12 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            StartUI.stopProgram();
         }
 
         @Override
         public String info() {
-            return this.key + " " + this.info;
+            return this.key + ". " + this.info;
         }
     }
 }

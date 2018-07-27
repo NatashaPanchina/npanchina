@@ -23,15 +23,21 @@ public class StartUITest {
     private Input input;
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-    private final StringJoiner menu = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
-            .add("Меню:")
-            .add("0. Добавить новую заявку.")
-            .add("1. Отобразить список всех заявок.")
-            .add("2. Редактировать заявку.")
-            .add("3. Удалить заявку.")
-            .add("4. Найти заявку по ID.")
-            .add("5. Найти заявки совпадающие по имени.")
-            .add("6. Выйти из программы.");
+    private final StringBuilder menu = new StringBuilder()
+            .append("0. Добавить новую заявку.")
+            .append(System.lineSeparator())
+            .append("1. Отобразить список всех заявок.")
+            .append(System.lineSeparator())
+            .append("2. Редактировать заявку.")
+            .append(System.lineSeparator())
+            .append("3. Удалить заявку.")
+            .append(System.lineSeparator())
+            .append("4. Найти заявку по ID.")
+            .append(System.lineSeparator())
+            .append("5. Найти заявки совпадающие по имени.")
+            .append(System.lineSeparator())
+            .append("6. Выйти из программы.")
+            .append(System.lineSeparator());
 
     @Before
     public void loadOutput() {
@@ -77,7 +83,6 @@ public class StartUITest {
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                        .append(System.lineSeparator())
                         .append(menu)
                         .append("------------ Все заявки ------------")
                         .append(System.lineSeparator())
@@ -86,7 +91,6 @@ public class StartUITest {
                         .append(second)
                         .append(System.lineSeparator())
                         .append(third)
-                        .append(System.lineSeparator())
                         .append(System.lineSeparator())
                         .append(menu)
                         .toString()
@@ -101,14 +105,11 @@ public class StartUITest {
         assertThat(new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                        .append(System.lineSeparator())
                         .append(menu)
                         .append("------------ Удаление заявки ------------")
                         .append(System.lineSeparator())
                         .append("Удаление прошло успешно!")
                         .append(System.lineSeparator())
-                        .append(System.lineSeparator())
-                        .append(menu)
                         .toString()
                 ));
     }
@@ -122,14 +123,11 @@ public class StartUITest {
         assertThat(new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                        .append(System.lineSeparator())
                         .append(menu)
                         .append("------------ Поиск заявки по ID ------------")
                         .append(System.lineSeparator())
                         .append("Искомая заявка: " + second)
                         .append(System.lineSeparator())
-                        .append(System.lineSeparator())
-                        .append(menu)
                         .toString()
                 ));
     }
@@ -145,7 +143,6 @@ public class StartUITest {
         assertThat(new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                                .append(System.lineSeparator())
                                 .append(menu)
                                 .append("------------ Поиск заявок ------------")
                                 .append(System.lineSeparator())
@@ -155,8 +152,6 @@ public class StartUITest {
                                 .append(System.lineSeparator())
                                 .append("Заявка: " + fourth)
                                 .append(System.lineSeparator())
-                                .append(System.lineSeparator())
-                                .append(menu)
                                 .toString()
                 ));
     }
