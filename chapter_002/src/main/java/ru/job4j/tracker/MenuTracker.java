@@ -9,18 +9,10 @@ import java.util.*;
  * @version $Id$
  * @since 0.1
  */
-class AddItem implements UserAction {
-    private int key;
-    private String info;
+class AddItem extends BaseAction {
 
     AddItem(int key, String info) {
-        this.key = key;
-        this.info = info;
-    }
-
-    @Override
-    public int key() {
-        return this.key;
+        super(key, info);
     }
 
     @Override
@@ -31,11 +23,6 @@ class AddItem implements UserAction {
         Item item = new Item(name, desc);
         tracker.add(item);
         System.out.println("Новая заявка: " + item.toString());
-    }
-
-    @Override
-    public String info() {
-        return this.key + ". " + this.info;
     }
 }
 
@@ -110,18 +97,10 @@ public class MenuTracker {
         }
     }
 
-    class ShowItems implements UserAction {
-        private int key;
-        private String info;
+    class ShowItems extends BaseAction {
 
         ShowItems(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, info);
         }
 
         @Override
@@ -131,25 +110,12 @@ public class MenuTracker {
                 System.out.println(item.toString());
             }
         }
-
-        @Override
-        public String info() {
-            return this.key + ". " + this.info;
-        }
     }
 
-    static class EditItem implements UserAction {
-        private int key;
-        private String info;
+    static class EditItem extends BaseAction {
 
         EditItem(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, info);
         }
 
         @Override
@@ -165,25 +131,12 @@ public class MenuTracker {
                 System.out.println("Заявка с указанным ID не найдена.");
             }
         }
-
-        @Override
-        public String info() {
-            return this.key + ". " + this.info;
-        }
     }
 
-    static class DeleteItem implements UserAction {
-        private int key;
-        private String info;
+    static class DeleteItem extends BaseAction {
 
         DeleteItem(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, info);
         }
 
         @Override
@@ -196,25 +149,12 @@ public class MenuTracker {
                 System.out.println("Заявка с указанным ID не найдена.");
             }
         }
-
-        @Override
-        public String info() {
-            return this.key + ". " + this.info;
-        }
     }
 
-    class FindItemById implements UserAction {
-        private int key;
-        private String info;
+    class FindItemById extends BaseAction {
 
         FindItemById(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, info);
         }
 
         @Override
@@ -228,25 +168,12 @@ public class MenuTracker {
                 System.out.println("Заявка с указанным ID не найдена.");
             }
         }
-
-        @Override
-        public String info() {
-            return this.key + ". " + this.info;
-        }
     }
 
-    class FindItemsByName implements UserAction {
-        private int key;
-        private String info;
+    class FindItemsByName extends BaseAction {
 
         FindItemsByName(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, info);
         }
 
         @Override
@@ -263,38 +190,20 @@ public class MenuTracker {
                 System.out.println("Заявки с именем " + name + " не найдены.");
             }
         }
-
-        @Override
-        public String info() {
-            return this.key + ". " + this.info;
-        }
     }
 
 
-    class ExitProgram implements UserAction {
+    class ExitProgram extends BaseAction {
         private final StartUI ui;
-        private int key;
-        private String info;
 
         ExitProgram(int key, String info, StartUI ui) {
-            this.key = key;
-            this.info = info;
+            super(key, info);
             this.ui = ui;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
             this.ui.stopProgram();
-        }
-
-        @Override
-        public String info() {
-            return this.key + ". " + this.info;
         }
     }
 }
