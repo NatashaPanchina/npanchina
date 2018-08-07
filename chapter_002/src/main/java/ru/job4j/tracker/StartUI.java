@@ -8,9 +8,8 @@ package ru.job4j.tracker;
  * @since 0.1
  */
 public class StartUI {
-    private static boolean exit = true;
+    private boolean exit = true;
 
-    private int[] ranges = {0, 1, 2, 3, 4, 5, 6};
     private final Input input;
 
     private final Tracker tracker;
@@ -20,19 +19,19 @@ public class StartUI {
         this.tracker = tracker;
     }
 
-    public static void stopProgram() {
-        exit = false;
+    public void stopProgram() {
+        this.exit = false;
     }
 
     public void init() {
         int key;
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
+        menu.fillActions(this);
         do {
             menu.show();
-            key = this.input.ask("Выберите пункт меню: ", ranges);
+            key = this.input.ask("Выберите пункт меню: ", menu.getRanges());
             menu.select(key);
-        } while (exit);
+        } while (this.exit);
     }
 
     public static void main(String[] args) {

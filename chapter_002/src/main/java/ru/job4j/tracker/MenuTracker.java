@@ -47,6 +47,9 @@ class AddItem implements UserAction {
  * @since 0.1
  */
 public class MenuTracker {
+
+    private int[] ranges;
+
     private Input input;
 
     private Tracker tracker;
@@ -66,14 +69,25 @@ public class MenuTracker {
     /**
      * Метод заполняет массив.
      */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddItem(0, "Добавить новую заявку."));
         this.actions.add(new ShowItems(1, "Отобразить список всех заявок."));
         this.actions.add(new MenuTracker.EditItem(2, "Редактировать заявку."));
         this.actions.add(new MenuTracker.DeleteItem(3, "Удалить заявку."));
         this.actions.add(new FindItemById(4, "Найти заявку по ID."));
         this.actions.add(new FindItemsByName(5, "Найти заявки совпадающие по имени."));
-        this.actions.add(new ExitProgram(6, "Выйти из программы."));
+        this.actions.add(new ExitProgram(6, "Выйти из программы.", ui));
+    }
+
+    /**
+     * Возвращает массив ключей.
+     */
+    public int[] getRanges() {
+        this.ranges = new int[this.actions.size()];
+        for (int index = 0; index < ranges.length; index++) {
+            ranges[index] = this.actions.get(index).key();
+        }
+        return ranges;
     }
 
     /**
@@ -258,12 +272,14 @@ public class MenuTracker {
 
 
     class ExitProgram implements UserAction {
+        private final StartUI ui;
         private int key;
         private String info;
 
-        ExitProgram(int key, String info) {
+        ExitProgram(int key, String info, StartUI ui) {
             this.key = key;
             this.info = info;
+            this.ui = ui;
         }
 
         @Override
@@ -273,7 +289,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            StartUI.stopProgram();
+            this.ui.stopProgram();
         }
 
         @Override

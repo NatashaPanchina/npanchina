@@ -110,6 +110,7 @@ public class StartUITest {
                         .append(System.lineSeparator())
                         .append("Удаление прошло успешно!")
                         .append(System.lineSeparator())
+                        .append(menu)
                         .toString()
                 ));
     }
@@ -128,6 +129,7 @@ public class StartUITest {
                         .append(System.lineSeparator())
                         .append("Искомая заявка: " + second)
                         .append(System.lineSeparator())
+                        .append(menu)
                         .toString()
                 ));
     }
@@ -152,6 +154,7 @@ public class StartUITest {
                                 .append(System.lineSeparator())
                                 .append("Заявка: " + fourth)
                                 .append(System.lineSeparator())
+                                .append(menu)
                                 .toString()
                 ));
     }
