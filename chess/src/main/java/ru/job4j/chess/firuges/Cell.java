@@ -40,8 +40,8 @@ public enum Cell {
      */
     public static Cell findByCoordinate(int x, int y) {
         Cell result = null;
-        for(Cell cells : values()) {
-            if(cells.getX() == x && cells.getY() == y) {
+        for (Cell cells : values()) {
+            if (cells.getX() == x && cells.getY() == y) {
                 result = cells;
                 break;
             }

@@ -22,8 +22,10 @@ public class PawnBlack extends Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        if(!this.isMove(source, dest)) throw new ImpossibleMoveException();
-        Cell[] steps = new Cell[] { dest };
+        if (!this.isMove(source, dest)) {
+            throw new ImpossibleMoveException();
+        }
+        Cell[] steps = new Cell[]{dest};
         return steps;
     }
 
@@ -35,7 +37,7 @@ public class PawnBlack extends Figure {
     @Override
     public boolean isMove(Cell source, Cell dest) {
         boolean result = false;
-        if(source.getY() == dest.getY() + 1 && source.getX() == dest.getX()) {
+        if (source.getY() == dest.getY() + 1 && source.getX() == dest.getX()) {
             result = true;
         }
         return result;

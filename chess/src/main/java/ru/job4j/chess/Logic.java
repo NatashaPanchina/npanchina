@@ -42,7 +42,7 @@ public class Logic {
                 result = true;
                 this.figures[index] = this.figures[index].copy(dest);
             }
-        } catch(FigureNotFoundException exc) {
+        } catch (FigureNotFoundException exc) {
             System.out.println(exc);
         } catch (ImpossibleMoveException exc) {
             System.out.println(exc);
@@ -67,15 +67,17 @@ public class Logic {
      * @param cell - coordinate of figure.
      * @return index of the figure.
      */
-    private int findBy(Cell cell) throws FigureNotFoundException{
+    private int findBy(Cell cell) throws FigureNotFoundException {
         int result = -1;
         for (int index = 0; index < this.figures.length; index++) {
-            if(this.figures[index] != null && this.figures[index].position.equals(cell)) {
+            if (this.figures[index] != null && this.figures[index].position.equals(cell)) {
                 result = index;
                 break;
             }
         }
-        if(result == -1) throw new FigureNotFoundException();
+        if (result == -1) {
+            throw new FigureNotFoundException();
+        }
         return result;
     }
 
@@ -85,9 +87,11 @@ public class Logic {
      * @throws OccupiedWayException if the way is not empty.
      */
     private void checkCells(Cell[] steps) throws OccupiedWayException {
-        for(int index = 0; index < steps.length; index++) {
+        for (int index = 0; index < steps.length; index++) {
             try {
-                if (this.findBy(steps[index]) != -1) throw new OccupiedWayException();
+                if (this.findBy(steps[index]) != -1) {
+                    throw new OccupiedWayException();
+                }
             } catch (FigureNotFoundException exc) { }
         }
     }

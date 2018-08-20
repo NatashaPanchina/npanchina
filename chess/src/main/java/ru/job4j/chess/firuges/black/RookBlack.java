@@ -23,7 +23,9 @@ public class RookBlack extends Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        if(!this.isMove(source, dest)) throw new ImpossibleMoveException();
+        if (!this.isMove(source, dest)) {
+            throw new ImpossibleMoveException();
+        }
         int size = source.getX() == dest.getX() ? Math.abs(source.getY() - dest.getY()) : Math.abs(source.getX() - dest.getX());
         Cell[] steps = new Cell[size];
         int deltax = 0;

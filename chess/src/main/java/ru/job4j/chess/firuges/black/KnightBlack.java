@@ -22,8 +22,10 @@ public class KnightBlack extends Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        if(!this.isMove(source, dest)) throw new ImpossibleMoveException();
-        Cell[] steps = new Cell[] { dest };
+        if (!this.isMove(source, dest)) {
+            throw new ImpossibleMoveException();
+        }
+        Cell[] steps = new Cell[]{dest};
         return steps;
     }
 
