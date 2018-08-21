@@ -21,25 +21,6 @@ public class BishopBlack extends Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (!this.isMove(source, dest)) {
-            throw new ImpossibleMoveException();
-        }
-        int size = Math.abs(source.getX() - dest.getX());
-        Cell[] steps = new Cell[size];
-        int deltax = source.getX() > dest.getX() ? -1 : 1;
-        int deltay = source.getY() > dest.getY() ? -1 : 1;
-        int x = source.getX() + deltax;
-        int y = source.getY() + deltay;
-        for (int index = 0; index < size; index++) {
-            steps[index] = Cell.findByCoordinate(x, y);
-            x = x + deltax;
-            y = y + deltay;
-        }
-        return steps;
-    }
-
-    @Override
     public Figure copy(Cell dest) {
         return new BishopBlack(dest);
     }
@@ -47,11 +28,9 @@ public class BishopBlack extends Figure {
     @Override
     public boolean isMove(Cell source, Cell dest) {
         boolean result = false;
-        int delta = Math.abs(source.getX() - dest.getX());
-        if (source.getX() - delta == dest.getX() && source.getY() - delta == dest.getY()
-                || source.getX() + delta == dest.getX() && source.getY() + delta == dest.getY()
-                || source.getX() + delta == dest.getX() && source.getY() - delta == dest.getY()
-                || source.getX() - delta == dest.getX() && source.getY() + delta == dest.getY()) {
+        int deltax = Math.abs(source.getX() - dest.getX());
+        int deltay = Math.abs(source.getY() - dest.getY());
+        if (deltax - deltay == 0) {
             result = true;
         }
         return result;

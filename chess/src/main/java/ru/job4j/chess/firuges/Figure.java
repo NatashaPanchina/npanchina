@@ -27,7 +27,33 @@ public abstract class Figure {
      * @return way that the figure must move.
      * @throws ImpossibleMoveException - if figure can't move.
      */
-    abstract public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException;
+    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
+        if (!this.isMove(source, dest)) {
+            throw new ImpossibleMoveException();
+        }
+        int size = source.getX() == dest.getX() ? Math.abs(source.getY() - dest.getY()) : Math.abs(source.getX() - dest.getX());
+        Cell[] steps = new Cell[size];
+        int deltax = 0;
+        int deltay = 0;
+        if (source.getX() > dest.getX()) {
+            deltax = -1;
+        } else if (source.getX() < dest.getX()) {
+            deltax = 1;
+        }
+        if (source.getY() > dest.getY()) {
+            deltay = -1;
+        } else if (source.getY() < dest.getY()) {
+            deltay = 1;
+        }
+        int x = source.getX() + deltax;
+        int y = source.getY() + deltay;
+        for (int index = 0; index < size; index++) {
+            steps[index] = Cell.findByCoordinate(x, y);
+            x = x + deltax;
+            y = y + deltay;
+        }
+        return steps;
+    }
 
     /**
      * method icon.

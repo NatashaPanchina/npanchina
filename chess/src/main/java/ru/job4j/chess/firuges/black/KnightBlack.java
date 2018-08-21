@@ -37,14 +37,10 @@ public class KnightBlack extends Figure {
     @Override
     public boolean isMove(Cell source, Cell dest) {
         boolean result = false;
-        if (source.getX() - 1 == dest.getX() && source.getY() - 2 == dest.getY()
-                || source.getX() - 2 == dest.getX() && source.getY() - 1 == dest.getY()
-                || source.getX() - 1 == dest.getX() && source.getY() + 2 == dest.getY()
-                || source.getX() + 1 == dest.getX() && source.getY() - 2 == dest.getY()
-                || source.getX() + 2 == dest.getX() && source.getY() - 1 == dest.getY()
-                || source.getX() + 2 == dest.getX() && source.getY() + 1 == dest.getY()
-                || source.getX() + 1 == dest.getX() && source.getY() + 2 == dest.getY()
-                || source.getX() - 2 == dest.getX() && source.getY() + 1 == dest.getY()) {
+        int deltax = Math.abs(source.getX() - dest.getX());
+        int deltay = Math.abs(source.getY() - dest.getY());
+        if (Math.abs(deltax - deltay) == 1 && deltax == 2
+                || Math.abs(deltax - deltay) == 1 && deltay == 2) {
             result = true;
         }
         return result;

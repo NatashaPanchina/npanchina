@@ -21,15 +21,6 @@ public class KingWhite extends Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (!this.isMove(source, dest)) {
-            throw new ImpossibleMoveException();
-        }
-        Cell[] steps = new Cell[]{dest};
-        return steps;
-    }
-
-    @Override
     public Figure copy(Cell dest) {
         return new KingWhite(dest);
     }
@@ -37,14 +28,10 @@ public class KingWhite extends Figure {
     @Override
     public boolean isMove(Cell source, Cell dest) {
         boolean result = false;
-        if (source.getX() + 1 == dest.getX() && source.getY() + 1 == dest.getY()
-                || source.getX() - 1 == dest.getX() && source.getY() - 1 == dest.getY()
-                || source.getX() + 1 == dest.getX() && source.getY() - 1 == dest.getY()
-                || source.getX() - 1 == dest.getX() && source.getY() + 1 == dest.getY()
-                || source.getX() - 1 == dest.getX() && source.getY() == dest.getY()
-                || source.getX() + 1 == dest.getX() && source.getY() == dest.getY()
-                || source.getX() == dest.getX() && source.getY() - 1 == dest.getY()
-                || source.getX() == dest.getX() && source.getY() + 1 == dest.getY()) {
+        int deltax = Math.abs(source.getX() - dest.getX());
+        int deltay = Math.abs(source.getY() - dest.getY());
+        if (deltax + deltay == 1
+                || deltax + deltay == 2 && deltax == 1) {
             result = true;
         }
         return result;

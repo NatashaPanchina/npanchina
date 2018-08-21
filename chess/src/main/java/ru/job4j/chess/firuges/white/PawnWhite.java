@@ -21,15 +21,6 @@ public class PawnWhite extends Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (!this.isMove(source, dest)) {
-            throw new ImpossibleMoveException();
-        }
-        Cell[] steps = new Cell[]{dest};
-        return steps;
-    }
-
-    @Override
     public Figure copy(Cell dest) {
         return new PawnWhite(dest);
     }
