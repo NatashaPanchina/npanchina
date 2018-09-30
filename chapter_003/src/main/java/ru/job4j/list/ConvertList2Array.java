@@ -1,12 +1,13 @@
 package ru.job4j.list;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * ConvertList2Array.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 20.09.2018
  */
 public class ConvertList2Array {
@@ -34,5 +35,22 @@ public class ConvertList2Array {
             }
         }
         return array;
+    }
+
+    /**
+     * Method convert.
+     * @param list - collection.
+     * @return convert list.
+     */
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> result = new ArrayList<>();
+        int array[];
+        for (int index = 0; index < list.size(); index++) {
+            array = list.get(index);
+            for (int value : array) {
+                result.add(value);
+            }
+        }
+        return result;
     }
 }
