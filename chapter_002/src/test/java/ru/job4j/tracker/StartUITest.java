@@ -60,8 +60,9 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         this.buildInput(new String[] {"0", "test name", "desc", "6"});
         this.start();
-        assertThat(this.tracker.getAll()[0].getName(), is("test name"));
+        assertThat(this.tracker.getAll().get(0).getName(), is("test name"));
     }
+
 
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
@@ -73,7 +74,7 @@ public class StartUITest {
 
     @Test
     public void whenReturnAllItems() {
-        Item first = this.tracker.add(new Item("test1", "testDesc1"));
+        Item first = this.tracker.add(new Item("testname1", "testDesc1"));
         Item second = this.tracker.add(new Item("test2", "testDesc2"));
         Item third = this.tracker.add(new Item("test3", "testDesc3"));
         this.buildInput(new String[] {"1", "6"});

@@ -6,7 +6,7 @@ import java.util.*;
  * Add Item - внешний класс.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version $Id$
+ * @version 1
  * @since 0.1
  */
 class AddItem extends BaseAction {
@@ -30,12 +30,12 @@ class AddItem extends BaseAction {
  * Menu Tracker.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version $Id$
+ * @version 2
  * @since 0.1
  */
 public class MenuTracker {
 
-    private int[] ranges;
+    private ArrayList<Integer> ranges = new ArrayList<>();
 
     private Input input;
 
@@ -69,12 +69,11 @@ public class MenuTracker {
     /**
      * Возвращает массив ключей.
      */
-    public int[] getRanges() {
-        this.ranges = new int[this.actions.size()];
-        for (int index = 0; index < ranges.length; index++) {
-            ranges[index] = this.actions.get(index).key();
+    public ArrayList<Integer> getRanges() {
+        for (int index = 0; index < this.actions.size(); index++) {
+            this.ranges.add(this.actions.get(index).key());
         }
-        return ranges;
+        return this.ranges;
     }
 
     /**
@@ -181,8 +180,8 @@ public class MenuTracker {
             System.out.println("------------ Поиск заявок ------------");
             String name = input.ask("Введите имя заявки: ");
             System.out.println("------------ Заявки с указанным именем ------------");
-            Item[] result = tracker.findByName(name);
-            if (result.length != 0) {
+            ArrayList<Item> result = tracker.findByName(name);
+            if (result.size() != 0) {
                 for (Item item : result) {
                     System.out.println("Заявка: " + item.toString());
                 }

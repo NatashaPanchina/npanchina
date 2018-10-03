@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -8,7 +11,7 @@ import static org.junit.Assert.assertThat;
  * Test.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version $Id$
+ * @version 2
  * @since 0.1
  */
 public class TrackerTest {
@@ -17,7 +20,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
-        assertThat(tracker.getAll()[0], is(item));
+        assertThat(tracker.getAll().get(0), is(item));
     }
 
     @Test
@@ -42,8 +45,11 @@ public class TrackerTest {
         tracker.add(second);
         tracker.add(third);
         tracker.add(fourth);
-        tracker.delete(tracker.getAll()[0].getId());
-        Item[] expected = {second, third, fourth};
+        tracker.delete(tracker.getAll().get(0).getId());
+        ArrayList<Item> expected = new ArrayList<>();
+        expected.add(second);
+        expected.add(third);
+        expected.add(fourth);
         assertThat(tracker.getAll(), is(expected));
     }
 
@@ -58,7 +64,11 @@ public class TrackerTest {
         tracker.add(second);
         tracker.add(third);
         tracker.add(fourth);
-        Item[] expected = {first, second, third, fourth};
+        ArrayList<Item> expected = new ArrayList<>();
+        expected.add(first);
+        expected.add(second);
+        expected.add(third);
+        expected.add(fourth);
         assertThat(tracker.getAll(), is(expected));
     }
 
@@ -69,7 +79,7 @@ public class TrackerTest {
         Item second = new Item("test2", "testDescription2", 100L);
         tracker.add(first);
         tracker.add(second);
-        assertThat(tracker.findById(tracker.getAll()[0].getId()), is(first));
+        assertThat(tracker.findById(tracker.getAll().get(0).getId()), is(first));
     }
 
     @Test
@@ -83,7 +93,9 @@ public class TrackerTest {
         tracker.add(second);
         tracker.add(third);
         tracker.add(fourth);
-        Item[] expected = {second, third};
+        ArrayList<Item> expected = new ArrayList<>();
+        expected.add(second);
+        expected.add(third);
         assertThat(tracker.findByName("test2"), is(expected));
     }
 }

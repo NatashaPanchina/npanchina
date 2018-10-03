@@ -6,12 +6,12 @@ import java.util.*;
  * Tracker.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version $Id$
+ * @version 2
  * @since 0.1
  */
 public class Tracker {
-    private Item[] items = new Item[100];
-    private int position = 0;
+    private ArrayList<Item> items = new ArrayList<>();
+
     private static final Random RN = new Random();
 
     /**
@@ -21,7 +21,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -33,10 +33,10 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int index = 0; index < this.position; index++) {
-            if (this.items[index] != null && this.items[index].getId().equals(id)) {
-                item.setId(id);
-                this.items[index] = item;
+        item.setId(id);
+        for (Item value : this.items) {
+            if (value.getId().equals(id)) {
+                this.items.set(this.items.indexOf(value), item);
                 result = true;
                 break;
             }
@@ -51,10 +51,9 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int index = 0; index < this.position; index++) {
-            if (this.items[index] != null && this.items[index].getId().equals(id)) {
-                System.arraycopy(this.items, index + 1, this.items, index, this.items.length - 1 - index);
-                items[this.position--] = null;
+        for (Item item : this.items) {
+            if (item.getId().equals(id)) {
+                this.items.remove(item);
                 result = true;
                 break;
             }
@@ -66,8 +65,8 @@ public class Tracker {
      * Method get all items.
      * @return array of the items.
      */
-    public Item[] getAll() {
-        return Arrays.copyOf(this.items, this.position);
+    public ArrayList<Item> getAll() {
+        return this.items;
     }
 
     /**
@@ -75,15 +74,14 @@ public class Tracker {
      * @param key - input item's name
      * @return array of items with the same name.
      */
-    public Item[] findByName(String key) {
-        Item[] result = new Item[this.position];
-        int count = 0;
-        for (int index = 0; index < this.position; index++) {
-            if (this.items[index].getName().equals(key)) {
-                result[count++] = this.items[index];
+    public ArrayList<Item> findByName(String key) {
+        ArrayList<Item> result = new ArrayList<>();
+        for (Item item : this.items) {
+            if (item.getName().equals(key)) {
+                result.add(item);
             }
         }
-        return Arrays.copyOf(result, count);
+        return result;
     }
 
     /**
@@ -92,9 +90,9 @@ public class Tracker {
      * @return the item with this id.
      */
     public Item findById(String id) {
-        Item result = null;
+        Item result =  new Item("1", "2");
         for (Item item : this.items) {
-            if (item != null && item.getId().equals(id)) {
+            if (item.getId().contains(id)) {
                 result = item;
                 break;
             }
