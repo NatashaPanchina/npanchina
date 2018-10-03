@@ -10,7 +10,7 @@ import java.util.*;
  * @since 0.1
  */
 public class Tracker {
-    private ArrayList<Item> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     private static final Random RN = new Random();
 
@@ -65,7 +65,7 @@ public class Tracker {
      * Method get all items.
      * @return array of the items.
      */
-    public ArrayList<Item> getAll() {
+    public List<Item> getAll() {
         return this.items;
     }
 
@@ -74,8 +74,8 @@ public class Tracker {
      * @param key - input item's name
      * @return array of items with the same name.
      */
-    public ArrayList<Item> findByName(String key) {
-        ArrayList<Item> result = new ArrayList<>();
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
         for (Item item : this.items) {
             if (item.getName().equals(key)) {
                 result.add(item);

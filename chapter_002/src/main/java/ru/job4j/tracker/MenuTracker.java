@@ -35,7 +35,7 @@ class AddItem extends BaseAction {
  */
 public class MenuTracker {
 
-    private ArrayList<Integer> ranges = new ArrayList<>();
+    private List<Integer> ranges = new ArrayList<>();
 
     private Input input;
 
@@ -69,7 +69,7 @@ public class MenuTracker {
     /**
      * Возвращает массив ключей.
      */
-    public ArrayList<Integer> getRanges() {
+    public List<Integer> getRanges() {
         for (int index = 0; index < this.actions.size(); index++) {
             this.ranges.add(this.actions.get(index).key());
         }
@@ -180,7 +180,7 @@ public class MenuTracker {
             System.out.println("------------ Поиск заявок ------------");
             String name = input.ask("Введите имя заявки: ");
             System.out.println("------------ Заявки с указанным именем ------------");
-            ArrayList<Item> result = tracker.findByName(name);
+            List<Item> result = tracker.findByName(name);
             if (result.size() != 0) {
                 for (Item item : result) {
                     System.out.println("Заявка: " + item.toString());
