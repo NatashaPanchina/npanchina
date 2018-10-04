@@ -34,9 +34,9 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         boolean result = false;
         item.setId(id);
-        for (Item value : this.items) {
-            if (value.getId().equals(id)) {
-                this.items.set(this.items.indexOf(value), item);
+        for (int index = 0; index < this.items.size(); index++) {
+            if (this.items.get(index).getId().equals(id)) {
+                this.items.set(index, item);
                 result = true;
                 break;
             }
@@ -51,9 +51,9 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (Item item : this.items) {
-            if (item.getId().equals(id)) {
-                this.items.remove(item);
+        for (int index = 0; index < this.items.size(); index++) {
+            if (this.items.get(index).getId().equals(id)) {
+                this.items.remove(index);
                 result = true;
                 break;
             }
