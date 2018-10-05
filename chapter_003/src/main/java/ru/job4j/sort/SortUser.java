@@ -30,11 +30,7 @@ public class SortUser {
                 new Comparator<User>() {
                     @Override
                     public int compare(User first, User second) {
-                        int result = first.getName().length() > second.getName().length() ? 1 : -1;
-                        if (first.getName().length() == second.getName().length()) {
-                            result = 0;
-                        }
-                        return result;
+                        return Integer.compare(first.getName().length(), second.getName().length());
                     }
                 }
         );
