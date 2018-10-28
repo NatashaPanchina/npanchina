@@ -21,9 +21,11 @@ public class CoffeeMachine {
         int leftover = value - price;
         int count = 0;
         for (Coin coins : Coin.values()) {
-            while(true) {
+            while (true) {
                 count += coins.getNominal();
-                if (count > leftover) break;
+                if (count > leftover) {
+                    break;
+                }
                 result.add(coins.getNominal());
             }
             count -= coins.getNominal();
