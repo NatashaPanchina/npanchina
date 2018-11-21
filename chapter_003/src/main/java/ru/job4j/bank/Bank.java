@@ -30,7 +30,7 @@ public class Bank {
      */
     public void addAccountToUser(String passport, Account account) {
         List<Account> accounts = this.getUserAccounts(passport);
-        if (accounts.indexOf(account) == -1) {
+        if (accounts != null && accounts.indexOf(account) == -1) {
             accounts.add(account);
         }
     }
@@ -42,7 +42,7 @@ public class Bank {
      */
     public void deleteAccountFromUser(String passport, Account account) {
         List<Account> accounts = this.getUserAccounts(passport);
-        if (accounts.indexOf(account) != -1) {
+        if (accounts != null && accounts.indexOf(account) != -1) {
             accounts.remove(account);
         }
     }
