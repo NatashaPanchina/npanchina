@@ -2,15 +2,37 @@ package ru.job4j.departments;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * SortDepartments.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 8.12.2018
  */
 public class SortDepartments {
+
+    /**
+     * Method addAll
+     * @param to - new set
+     * @param from - list of elements
+     * @return set with these elements
+     */
+    private TreeSet<String> addAll(TreeSet<String> to, List<String> from) {
+        to.addAll(from);
+        for (String department : from) {
+            StringBuilder element = new StringBuilder();
+            for (int index = 0; index < department.length(); index++) {
+                if (department.charAt(index) == '\\') {
+                    to.add(element.toString());
+                }
+                element.append(department.charAt(index));
+            }
+        }
+        return to;
+    }
+
     /**
      * Method sort
      * @param departments - list of departments
@@ -18,9 +40,8 @@ public class SortDepartments {
      *             - select '1' to sort descending
      * @return sorted list of departments
      */
-    public List<String> sort(List<String> departments, int sort) {
-        List<String> list = departments;
-        list.sort(
+    public TreeSet<String> sort(List<String> departments, int sort) {
+        TreeSet<String> result = new TreeSet<>(
                 new Comparator<String>() {
                     @Override
                     public int compare(String left, String right) {
@@ -39,7 +60,7 @@ public class SortDepartments {
                         return result == 0 ? Integer.compare(first.length, second.length) : result;
                     }
                 });
-        return list;
+        return this.addAll(result, departments);
     }
 }
 

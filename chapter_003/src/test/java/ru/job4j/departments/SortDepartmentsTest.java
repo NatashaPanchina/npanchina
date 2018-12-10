@@ -3,6 +3,7 @@ package ru.job4j.departments;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -11,7 +12,7 @@ import static org.junit.Assert.assertThat;
  * Test.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 8.12.2018
  */
 public class SortDepartmentsTest {
@@ -22,12 +23,10 @@ public class SortDepartmentsTest {
         departments.add("K1\\SK2");
         departments.add("K1\\SK1\\SSK1");
         departments.add("K1\\SK1\\SSK2");
-        departments.add("K1");
+        departments.add("K2");
         departments.add("K2\\SK1\\SSK1");
         departments.add("K2\\SK1\\SSK2");
-        departments.add("K2\\SK1");
-        departments.add("K2");
-        ArrayList<String> expected = new ArrayList<>();
+        TreeSet<String> expected = new TreeSet<>();
         expected.add("K1");
         expected.add("K1\\SK1");
         expected.add("K1\\SK1\\SSK1");
@@ -48,12 +47,10 @@ public class SortDepartmentsTest {
         departments.add("K1\\SK2");
         departments.add("K1\\SK1\\SSK1");
         departments.add("K1\\SK1\\SSK2");
-        departments.add("K1");
+        departments.add("K2");
         departments.add("K2\\SK1\\SSK1");
         departments.add("K2\\SK1\\SSK2");
-        departments.add("K2\\SK1");
-        departments.add("K2");
-        ArrayList<String> expected = new ArrayList<>();
+        TreeSet<String> expected = new TreeSet<>();
         expected.add("K2");
         expected.add("K2\\SK1");
         expected.add("K2\\SK1\\SSK2");
