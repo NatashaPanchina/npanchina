@@ -4,7 +4,7 @@ package ru.job4j.tracker;
  * StartUI.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version $Id$
+ * @version 2
  * @since 0.1
  */
 public class StartUI {
@@ -28,7 +28,7 @@ public class StartUI {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions(this);
         do {
-            menu.show();
+            menu.show(System.out::println);
             key = this.input.ask("Выберите пункт меню: ", menu.getRanges());
             menu.select(key);
         } while (this.exit);

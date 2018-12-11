@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * Add Item - внешний класс.
@@ -88,10 +89,10 @@ public class MenuTracker {
     /**
      * Выводит на экран меню.
      */
-    public void show() {
+    public void show(Consumer<String> media) {
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+                media.accept(action.info());
             }
         }
     }
