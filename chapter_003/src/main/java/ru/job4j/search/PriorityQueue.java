@@ -1,12 +1,13 @@
 package ru.job4j.search;
 
 import java.util.LinkedList;
+import java.util.stream.Stream;
 
 /**
  * Priority Queue.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 19.09.2018
  */
 public class PriorityQueue {
@@ -19,12 +20,10 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        int index = 0;
-        for ( ; index < this.tasks.size(); index++) {
-            if (task.getPriority() < this.tasks.get(index).getPriority()) {
-                break;
-            }
-        }
+        Stream<Task> stream = this.tasks.stream().filter(
+                target -> task.getPriority() > target.getPriority()
+        );
+        int index = (int) stream.count();
         this.tasks.add(index, task);
     }
 

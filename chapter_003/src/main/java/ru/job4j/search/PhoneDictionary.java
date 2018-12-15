@@ -2,12 +2,14 @@ package ru.job4j.search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Phone Dictionary.
  *
  * @author Natasha Panchina
- * @version 1
+ * @version 2
  * @since 19.09.2018
  */
 public class PhoneDictionary {
@@ -20,18 +22,15 @@ public class PhoneDictionary {
     /**
      * Вернуть список всех пользователей, который содержат key в любых полях.
      * @param key Ключ поиска.
-     * @return Список подощедщих пользователей.
+     * @return Список подошедших пользователей.
      */
     public List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
-        for (Person person : this.persons) {
-            if (person.getName().contains(key)
-                    || person.getSurname().contains(key)
-                    || person.getPhone().contains(key)
-                    || person.getAddress().contains(key)) {
-                result.add(person);
-            }
-        }
-        return result;
+        Stream<Person> stream = this.persons.stream().filter(
+                person -> person.getName().contains(key)
+                        || person.getSurname().contains(key)
+                        || person.getPhone().contains(key)
+                        || person.getAddress().contains(key)
+        );
+        return stream.collect(Collectors.toList());
     }
 }

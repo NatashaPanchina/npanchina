@@ -1,6 +1,7 @@
 package ru.job4j.list;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,11 +45,7 @@ public class ConvertList2Array {
      */
     public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new ArrayList<>();
-        for (int[] array : list) {
-            for (int value : array) {
-                result.add(value);
-            }
-        }
+        list.stream().map(Arrays::stream).forEach(elements -> elements.forEach(result::add));
         return result;
     }
 }

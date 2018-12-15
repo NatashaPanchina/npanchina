@@ -1,6 +1,5 @@
 package ru.job4j.departments;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -21,15 +20,16 @@ public class SortDepartments {
      */
     private TreeSet<String> addAll(TreeSet<String> to, List<String> from) {
         to.addAll(from);
-        for (String department : from) {
-            StringBuilder element = new StringBuilder();
-            for (int index = 0; index < department.length(); index++) {
-                if (department.charAt(index) == '\\') {
-                    to.add(element.toString());
-                }
-                element.append(department.charAt(index));
-            }
-        }
+        from.stream().forEach(
+                department -> {
+                    StringBuilder element = new StringBuilder();
+                    for (int index = 0; index < department.length(); index++) {
+                        if (department.charAt(index) == '\\') {
+                            to.add(element.toString());
+                        }
+                        element.append(department.charAt(index));
+                    }
+                });
         return to;
     }
 
@@ -41,25 +41,23 @@ public class SortDepartments {
      * @return sorted list of departments
      */
     public TreeSet<String> sort(List<String> departments, int sort) {
-        TreeSet<String> result = new TreeSet<>(
-                new Comparator<String>() {
-                    @Override
-                    public int compare(String left, String right) {
-                        int result = 0;
+        TreeSet<String> result = new TreeSet<>();
+        result.stream().sorted(
+                (left, right) -> {
+                        int rest = 0;
                         char[] first = left.toCharArray();
                         char[] second = right.toCharArray();
                         for (int index = 0; index < Math.min(first.length, second.length); index++) {
                             if (first[index] != second[index] && sort == 0) {
-                                result = Character.compare(first[index], second[index]);
+                                rest = Character.compare(first[index], second[index]);
                                 break;
                             } else if (first[index] != second[index] && sort == 1) {
-                                result = Character.compare(second[index], first[index]);
+                                rest = Character.compare(second[index], first[index]);
                                 break;
                             }
                         }
-                        return result == 0 ? Integer.compare(first.length, second.length) : result;
-                    }
-                });
+                        return rest == 0 ? Integer.compare(first.length, second.length) : rest;
+                    });
         return this.addAll(result, departments);
     }
 }
