@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Tracker.
@@ -75,13 +77,10 @@ public class Tracker {
      * @return array of items with the same name.
      */
     public List<Item> findByName(String key) {
-        List<Item> result = new ArrayList<>();
-        for (Item item : this.items) {
-            if (item.getName().equals(key)) {
-                result.add(item);
-            }
-        }
-        return result;
+        return this.items.stream()
+                .filter(item -> item.getName().equals(key))
+                .collect(Collectors.toList());
+
     }
 
     /**
@@ -90,14 +89,9 @@ public class Tracker {
      * @return the item with this id.
      */
     public Item findById(String id) {
-        Item result =  new Item("1", "2");
-        for (Item item : this.items) {
-            if (item.getId().contains(id)) {
-                result = item;
-                break;
-            }
-        }
-        return result;
+        return this.items.stream()
+                .filter(item -> item.getId().contains(id))
+                .findFirst().orElse(null);
     }
 
     /**
