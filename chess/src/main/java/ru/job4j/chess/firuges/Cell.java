@@ -1,10 +1,14 @@
 package ru.job4j.chess.firuges;
 
+import java.util.stream.Stream;
+
 /**
  * Cell.
  * @author Natasha Panchina (panchinanata25@gmail.com)
  * @version 1
  * @since 18.08.2018
+ * @version 2
+ * @since 18.12.2018
  */
 public enum Cell {
     A1(0, 0), A2(0, 1), A3(0, 2), A4(0, 3), A5(0, 4), A6(0, 5), A7(0, 6), A8(0, 7),
@@ -39,13 +43,8 @@ public enum Cell {
      * @return the cell with these coordinates.
      */
     public static Cell findByCoordinate(int x, int y) {
-        Cell result = null;
-        for (Cell cells : values()) {
-            if (cells.getX() == x && cells.getY() == y) {
-                result = cells;
-                break;
-            }
-        }
-        return result;
+        return Stream.of(values())
+                .filter(cell -> cell.getX() == x && cell.getY() == y)
+                .findFirst().orElse(null);
     }
 }

@@ -3,12 +3,17 @@ package ru.job4j.chess;
 import ru.job4j.chess.firuges.Figure;
 import ru.job4j.chess.firuges.Cell;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Logic.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
  * @version 1
  * @since 18.08.2018
+ * @version 2
+ * @since 18.12.2018
  */
 public class Logic {
     //the all figures.
@@ -56,9 +61,7 @@ public class Logic {
      * Method clean.
      */
     public void clean() {
-        for (int position = 0; position < this.figures.length; position++) {
-            this.figures[position] = null;
-        }
+        Arrays.stream(this.figures).forEach(element -> element = null);
         this.index = 0;
     }
 
@@ -68,17 +71,19 @@ public class Logic {
      * @return index of the figure.
      */
     private int findBy(Cell cell) throws FigureNotFoundException {
-        int result = -1;
-        for (int index = 0; index < this.figures.length; index++) {
-            if (this.figures[index] != null && this.figures[index].position.equals(cell)) {
-                result = index;
-                break;
-            }
-        }
-        if (result == -1) {
+        final int[] result = {-1};
+        List<Figure> figuresList = Arrays.asList(this.figures);
+        figuresList.stream().forEach(
+                figure -> {
+                    if (figure != null && figure.position.equals(cell)) {
+                        result[0] = figuresList.indexOf(figure);
+                    }
+                }
+        );
+        if (result[0] == -1) {
             throw new FigureNotFoundException();
         }
-        return result;
+        return result[0];
     }
 
     /**
@@ -87,12 +92,13 @@ public class Logic {
      * @throws OccupiedWayException if the way is not empty.
      */
     private void checkCells(Cell[] steps) throws OccupiedWayException {
-        for (int index = 0; index < steps.length; index++) {
+        for (Cell step : steps) {
             try {
-                if (this.findBy(steps[index]) != -1) {
+                if (this.findBy(step) != -1) {
                     throw new OccupiedWayException();
                 }
-            } catch (FigureNotFoundException exc) { }
+            } catch (FigureNotFoundException exc) {
+            }
         }
     }
 }
