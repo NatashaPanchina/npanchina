@@ -3,7 +3,6 @@ package ru.job4j.search;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Phone Dictionary.
@@ -25,7 +24,7 @@ public class PhoneDictionary {
      * @return Список подошедших пользователей.
      */
     public List<Person> find(String key) {
-        Stream<Person> stream = this.persons.stream().filter(
+        var stream = this.persons.stream().filter(
                 person -> person.getName().contains(key)
                         || person.getSurname().contains(key)
                         || person.getPhone().contains(key)

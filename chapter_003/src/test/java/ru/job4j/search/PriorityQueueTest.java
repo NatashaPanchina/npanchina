@@ -10,11 +10,13 @@ import static org.junit.Assert.assertThat;
  * @author Natasha Panchina (panchinanata25@gmail.com)
  * @version 1
  * @since 19.09.2018
+ * @version 2
+ * @since 20.12.2018
  */
 public class PriorityQueueTest {
     @Test
     public void whenHigherPriority() {
-        PriorityQueue queue = new PriorityQueue();
+        var queue = new PriorityQueue();
         queue.put(new Task("middle", 5));
         queue.put(new Task("urgent", 1));
         queue.put(new Task("low", 7));

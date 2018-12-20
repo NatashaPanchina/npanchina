@@ -1,7 +1,6 @@
 package ru.job4j.search;
 
 import java.util.LinkedList;
-import java.util.stream.Stream;
 
 /**
  * Priority Queue.
@@ -9,6 +8,8 @@ import java.util.stream.Stream;
  * @author Natasha Panchina (panchinanata25@gmail.com)
  * @version 2
  * @since 19.09.2018
+ * @version 3
+ * @since 20.12.2018
  */
 public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<Task>();
@@ -20,10 +21,10 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        Stream<Task> stream = this.tasks.stream().filter(
+        var stream = this.tasks.stream().filter(
                 target -> task.getPriority() > target.getPriority()
         );
-        int index = (int) stream.count();
+        var index = (int) stream.count();
         this.tasks.add(index, task);
     }
 
