@@ -12,6 +12,7 @@ import java.util.function.Function;
  * @since 10.12.2018
  */
 public class Diapason {
+
     /**
      * Method diapason
      * @param start
