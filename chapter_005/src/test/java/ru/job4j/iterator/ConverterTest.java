@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.is;
  * Test.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 14.02.2019
  */
 public class ConverterTest {
@@ -103,6 +103,17 @@ public class ConverterTest {
         assertThat(it.next(), is(2));
         assertThat(it.next(), is(3));
         it.next();
+    }
+
+    @Test
+    public void hasNext() {
+        Iterator<Integer> it1 = (new ArrayList<Integer>()).iterator();
+        Iterator<Integer> it2 = (new ArrayList<Integer>()).iterator();
+        Iterator<Integer> it3 = (Arrays.asList(1, 2)).iterator();
+        Iterator<Iterator<Integer>> its = Arrays.asList(it1, it2, it3).iterator();
+        Converter iteratorOfIterators = new Converter();
+        it = iteratorOfIterators.convert(its);
+        assertThat(it.hasNext(), is(true));
     }
 }
 

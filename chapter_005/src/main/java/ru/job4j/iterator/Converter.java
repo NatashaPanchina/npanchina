@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  * Converter.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 14.02.2019
  */
 public class Converter {
@@ -18,7 +18,7 @@ public class Converter {
             @Override
             public boolean hasNext() {
                 boolean result = inner.hasNext();
-                if (!result && it.hasNext()) {
+                while (!result && it.hasNext()) {
                     inner = it.next();
                     result = inner.hasNext();
                 }
