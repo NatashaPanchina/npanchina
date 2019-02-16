@@ -7,46 +7,44 @@ import java.util.NoSuchElementException;
  * SimpleArray.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 14.02.2019
  */
 public class SimpleArray<T> implements Iterable<T> {
     private T[] array;
-    private int size;
-    private int index = 0;
+    private int size = 10;
+    private int position = 0;
 
     public SimpleArray(int size) {
         if (size > 0) {
-            this.array = (T[]) new Object[size];
             this.size = size;
-        } else {
-            throw new IllegalArgumentException("Illegal size");
         }
+        this.array = (T[]) new Object[this.size];
     }
 
     public void add(T model) {
-        if (this.index >= this.size) {
+        if (this.position >= this.size) {
             throw new IndexOutOfBoundsException();
         }
-        this.array[this.index++] = model;
+        this.array[this.position++] = model;
     }
 
     public void set(int index, T model) {
-        if (index < this.size) {
+        if (index < this.position) {
             this.array[index] = model;
         }
     }
 
     public void remove(int index) {
-        for (; index < this.size - 1; index++) {
+        for (; index < this.position - 1; index++) {
             this.array[index] = this.array[index + 1];
         }
-        this.size--;
+        this.position--;
     }
 
     public T get(int index) {
         T result = null;
-        if (index < this.size) {
+        if (index < this.position) {
             result = this.array[index];
         }
         return result;
@@ -57,7 +55,7 @@ public class SimpleArray<T> implements Iterable<T> {
             private int count = 0;
             @Override
             public boolean hasNext() {
-                return count < size;
+                return count < position;
             }
 
             @Override
