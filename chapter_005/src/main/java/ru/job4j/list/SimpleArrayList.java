@@ -4,7 +4,7 @@ package ru.job4j.list;
  * SimpleArrayList.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 21.02.2019
  */
 public class SimpleArrayList<E> {
@@ -19,9 +19,12 @@ public class SimpleArrayList<E> {
     }
 
     public E delete() {
-        E date = this.first.date;
-        this.first = this.first.next;
-        this.size--;
+        E date = null;
+        if (this.first != null) {
+            date = this.first.date;
+            this.first = this.first.next;
+            this.size--;
+        }
         return date;
     }
 
