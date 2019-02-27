@@ -71,7 +71,6 @@ public class DynamicList<E> implements Iterable<E> {
 
             @Override
             public E next() {
-                checkModification();
                 if (!this.hasNext()) {
                     throw new NoSuchElementException();
                 }
