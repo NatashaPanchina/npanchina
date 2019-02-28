@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * DynamicLinkedList.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 28.02.2019
  */
 public class DynamicLinkedList<E> implements Iterable<E> {
@@ -54,6 +54,7 @@ public class DynamicLinkedList<E> implements Iterable<E> {
     public Iterator<E> iterator() {
         return new Iterator<>() {
             private int count = 0;
+            private Node<E> returned = first;
             private int expectedModCount = modCount;
 
             @Override
@@ -67,7 +68,10 @@ public class DynamicLinkedList<E> implements Iterable<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return get(count++);
+                E result = returned.date;
+                returned = returned.next;
+                count++;
+                return result;
             }
 
             private void checkModification() {

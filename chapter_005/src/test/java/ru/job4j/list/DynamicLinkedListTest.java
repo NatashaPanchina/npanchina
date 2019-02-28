@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
  * Test.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 28.02.2019
  */
 public class DynamicLinkedListTest {
@@ -32,5 +32,18 @@ public class DynamicLinkedListTest {
         assertThat(dynamicLinkedList.size(), is(1));
         dynamicLinkedList.add(1);
         assertThat(dynamicLinkedList.size(), is(2));
+    }
+
+    @Test
+    public void whenAddElementThanMethodNextShouldGetThisElement() {
+        DynamicLinkedList<Integer> dynamicLinkedList = new DynamicLinkedList<>();
+        dynamicLinkedList.add(0);
+        dynamicLinkedList.add(1);
+        Iterator<Integer> it = dynamicLinkedList.iterator();
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.next(), is(0));
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.next(), is(1));
+        assertThat(it.hasNext(), is(false));
     }
 }
