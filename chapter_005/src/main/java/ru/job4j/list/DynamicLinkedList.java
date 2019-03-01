@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * DynamicLinkedList.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 2
+ * @version 3
  * @since 28.02.2019
  */
 public class DynamicLinkedList<E> implements Iterable<E> {
@@ -45,6 +45,23 @@ public class DynamicLinkedList<E> implements Iterable<E> {
 
         }
         return result;
+    }
+
+    public E removeLast() {
+        Node<E> deleted = this.last;
+        if (deleted == null) {
+            return null;
+        }
+        this.last = deleted.prev;
+        E element = deleted.date;
+        if (deleted.prev == null) {
+            this.first = null;
+        } else {
+            deleted.prev.next = null;
+        }
+        size--;
+        modCount++;
+        return element;
     }
 
     public int size() {
