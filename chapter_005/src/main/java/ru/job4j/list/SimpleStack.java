@@ -4,7 +4,7 @@ package ru.job4j.list;
  * SimpleStack.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 1
+ * @version 2
  * @since 1.03.2019
  */
 public class SimpleStack<E> {
@@ -19,5 +19,9 @@ public class SimpleStack<E> {
 
     public E poll() {
         return dynamicLinkedList.removeLast();
+    }
+
+    public boolean isEmpty() {
+        return dynamicLinkedList.size() <= 0;
     }
 }
