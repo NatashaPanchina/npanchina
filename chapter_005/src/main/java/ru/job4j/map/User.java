@@ -6,7 +6,7 @@ import java.util.Calendar;
  * User.
  *
  * @author Natasha Panchina (panchinanata25@gmail.com)
- * @version 3
+ * @version 4
  * @since 11.06.2019
  */
 public class User {
@@ -20,7 +20,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    /**@Override
+    @Override
     public int hashCode() {
         int result = 1;
         result = result * 31 + (this.name == null ? 0 : this.name.hashCode());
@@ -28,7 +28,6 @@ public class User {
         result = result * 31 + (this.birthday == null ? 0 : this.birthday.hashCode());
         return result;
     }
-     **/
 
     @Override
     public boolean equals(Object other) {
